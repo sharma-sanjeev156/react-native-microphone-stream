@@ -1,4 +1,4 @@
-package com.github.chadsmith.MicrophoneStream;
+package io.tarteel.MicrophoneStream;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
