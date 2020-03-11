@@ -3,7 +3,7 @@ React Native module used for two-way audio
 
 ## Install
 ```
-$ npm i git://github.com/chadsmith/react-native-microphone-stream.git
+$ npm i git://github.com/Tarteel-io/react-native-microphone-stream.git
 $ react-native link react-native-microphone-stream
 ```
 
