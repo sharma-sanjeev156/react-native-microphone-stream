@@ -5,6 +5,9 @@
     AudioQueueBufferRef _buffer;
     AVAudioSessionCategory _category;
     AVAudioSessionMode _mode;
+
+    NSNumber *_audioData[65536];
+    UInt32 _bufferSize;
 }
 
 void inputCallback(
@@ -25,6 +28,7 @@ RCT_EXPORT_METHOD(init:(NSDictionary *) options) {
     _mode = [session mode];
 
     UInt32 bufferSize = options[@"bufferSize"] == nil ? 8192 : [options[@"bufferSize"] unsignedIntegerValue];
+    _bufferSize = bufferSize;
 
     AudioStreamBasicDescription description;
     description.mReserved = 0;
@@ -71,18 +75,12 @@ RCT_EXPORT_METHOD(stop) {
 }
 
 - (void)processInputBuffer:(AudioQueueBufferRef)inBuffer queue:(AudioQueueRef)queue {
-    NSData* audioData = [NSData dataWithBytes:inBuffer->mAudioData
-                                       length:inBuffer->mAudioDataByteSize];
-
-    const unsigned char *dataBuffer = (const unsigned char *)[audioData bytes];
-    NSUInteger dataLength  = [audioData length];
-    NSMutableArray *array  = [NSMutableArray arrayWithCapacity:dataLength];
-
-    for (int i = 0; i < dataLength; ++i)
-     [array addObject:[NSNumber numberWithInteger:dataBuffer[i]]];
-
-    [self sendEventWithName:@"audioData" body:array];
-
+    SInt16 *audioData = inBuffer->mAudioData;
+    UInt32 count = inBuffer->mAudioDataByteSize / sizeof(SInt16);
+    for (int i = 0; i < _bufferSize; i++) {
+        _audioData[i] = @(audioData[i]);
+    }
+    [self sendEventWithName:@"audioData" body:[NSArray arrayWithObjects:_audioData count:count]];
     AudioQueueEnqueueBuffer(queue, inBuffer, 0, NULL);
 }
 
