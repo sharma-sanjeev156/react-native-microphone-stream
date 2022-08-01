@@ -2,7 +2,7 @@
   "name": "react-native-microphone-stream",
   "version": "0.0.1",
   "description": "React Native module used for two-way audio",
-  "author": "Mohamed Moussa <mohamed@tarteel.io> (https://github.com/mmmoussa)",
+  "author": "Mark Elphinstone <mark@oxfordsourceltd.com> (https://github.com/marksyzm)",
   "license": "MIT",
   "contributors": [
     {
@@ -12,6 +12,10 @@
     {
       "name": "Chad Smith",
       "email": "chad@developer.email"
+    },
+    {
+      "name": "Mohamed Moussa",
+      "email": "chad@developer.email"
     }
   ],
   "keywords": [
@@ -20,10 +24,10 @@
     "recording",
     "microphone"
   ],
-  "homepage": "https://github.com/Tarteel-io/react-native-microphone-stream",
+  "homepage": "https://github.com/marksyzm/react-native-microphone-stream",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Tarteel-io/react-native-microphone-stream.git"
+    "url": "git@github.com:marksyzm/react-native-microphone-stream.git"
   },
   "main": "MicrophoneStream.js",
   "peerDependencies": {
