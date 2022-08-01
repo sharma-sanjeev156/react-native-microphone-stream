@@ -8,7 +8,7 @@ declare module 'react-native-microphone-stream' {
 
   const RNMicrophoneStream: {
     init: (options: RNMicrophoneStreamOptions) => void,
-    addListener: (listener: (data: Uint8Array) => void) => () => void;
+    addListener: (listener: (data: Uint8Array) => void) => { remove: () => void };
     start: () => void;
     pause: () => void;
     stop: () => void;
