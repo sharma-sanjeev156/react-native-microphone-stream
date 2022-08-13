@@ -1,6 +1,6 @@
 {
   "name": "react-native-microphone-stream",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React Native module for audio input data streaming",
   "author": "Mark Elphinstone <mark@oxfordsourceltd.com> (https://github.com/marksyzm)",
   "license": "MIT",
