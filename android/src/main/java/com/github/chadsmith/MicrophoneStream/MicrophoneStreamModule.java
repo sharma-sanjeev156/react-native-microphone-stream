@@ -121,13 +121,11 @@ class MicrophoneStreamModule extends ReactContextBaseJavaModule {
     }
 
     private void recording() {
-        byte buffer[] = new byte[bufferSize];
-
+        short buffer[] = new short[bufferSize];
         while (running && !reactContext.getCatalystInstance().isDestroyed()) {
             WritableArray data = Arguments.createArray();
             audioRecord.read(buffer, 0, bufferSize);
-            for (byte value : buffer) {
-                data.pushInt((int) value);
+            for (float value : buffer) {
             }
             eventEmitter.emit("audioData", data);
         }
