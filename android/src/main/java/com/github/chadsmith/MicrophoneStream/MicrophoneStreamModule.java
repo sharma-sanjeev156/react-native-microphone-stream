@@ -120,6 +120,13 @@ class MicrophoneStreamModule extends ReactContextBaseJavaModule {
         }
     }
 
+    // Required for rn built in EventEmitter Calls.
+    @ReactMethod
+    public void addListener(String eventName) { }
+
+    @ReactMethod
+    public void removeListeners(Integer count) { }
+
     private void recording() {
         short buffer[] = new short[bufferSize];
         while (running && !reactContext.getCatalystInstance().isDestroyed()) {
