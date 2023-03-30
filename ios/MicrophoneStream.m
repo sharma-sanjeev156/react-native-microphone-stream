@@ -50,8 +50,6 @@ RCT_EXPORT_METHOD(start) {
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayAndRecord
                    error:nil];
-    [session overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker
-                               error:nil];
     AudioQueueStart(_queue, NULL);
 }
 
