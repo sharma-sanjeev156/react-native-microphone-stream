@@ -49,6 +49,7 @@ RCT_EXPORT_METHOD(init:(NSDictionary *) options) {
 RCT_EXPORT_METHOD(start) {
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayAndRecord
+     withOptions:AVAudioSessionCategoryOptionMixWithOthers
                    error:nil];
     AudioQueueStart(_queue, NULL);
 }
