@@ -47,10 +47,15 @@ RCT_EXPORT_METHOD(init:(NSDictionary *) options) {
 }
 
 RCT_EXPORT_METHOD(start) {
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    [session setCategory:AVAudioSessionCategoryPlayAndRecord
-     withOptions:AVAudioSessionCategoryOptionMixWithOthers
-                   error:nil];
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    AVAudioSessionCategoryOptions options = AVAudioSessionCategoryOptionDefaultToSpeaker |
+                                            AVAudioSessionCategoryOptionAllowBluetooth |
+                                            AVAudioSessionCategoryOptionMixWithOthers;
+
+    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
+                  withOptions:options
+                        error:nil];
+    
     AudioQueueStart(_queue, NULL);
 }
 
@@ -70,6 +75,10 @@ RCT_EXPORT_METHOD(stop) {
                    error:nil];
     [session setMode:_mode
                error:nil];
+    AudioQueueStop(_queue, YES);
+}
+
+RCT_EXPORT_METHOD(stopAudioQueue) {
     AudioQueueStop(_queue, YES);
 }
 
